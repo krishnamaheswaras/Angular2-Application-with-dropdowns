@@ -1,0 +1,38 @@
+<div class="form-horizontal col-md-8 col-lg-8">
+
+	  <div class="form-group">
+	    <label class="col-md-2 col-lg-2">Makes:</label> 
+	    <div class="col-md-6 col-lg-6">
+		    <select class="input-sm form-control" [(ngModel)]="selectedMake" (change)="onSelectMake(selectedMake)">
+		    	 <option value="0">--Select--</option>
+				<option  [class.hide]="make.is_in_navigation === false"  *ngFor="let make of makes" value={{make.make}}>{{make.name}}</option>
+			</select>
+	  	</div>
+	  </div>
+
+	  <div class="form-group" *ngIf="selectedMake!=undefined && selectedMake!=0 && selectedMake!=''">
+
+	    <label class="col-md-2 col-lg-2">Model:</label> 
+	    <div class="col-md-6 col-lg-6">
+		    <select  class="input-sm form-control"  [(ngModel)]="selectedModel" (change)="onSelectedModel(selectedModel)">
+			  <option value="0">--Select Modal--</option>
+			  <option [class.hide]="modal.is_in_navigation === false"  *ngFor="let modal of modals.models" value={{modal.model}}>{{modal.name}}</option>
+			</select>
+		</div>
+
+	  </div>
+
+	<div class="form-group">
+		<div class="col-md-2 col-lg-2"></div>
+		<div *ngIf="selectedModel && selectedModalObj!==undefined && selectedModalObj!=null" class="col-lg-6 col-md-6">
+			<div class="col-md-12 col-lg-12 an-task-model-name">
+				<input  [(ngModel)]="selectedModalObj.name" class="form-control input-sm">
+			</div>
+			<div class="col-md-12 col-lg-12 an-task-model-image">
+				<img [src]="selectedModalObj.image" class="image-container">
+			</div>
+		</div>
+	</div>
+
+
+</div>
